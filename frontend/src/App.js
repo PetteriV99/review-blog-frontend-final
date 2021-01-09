@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './App.css';
 import List from './components/List';
 import withListLoading from './components/withListLoading';
+
 function App() {
   const ListLoading = withListLoading(List);
   const [appState, setAppState] = useState({
@@ -11,31 +13,31 @@ function App() {
 
   useEffect(() => {
     setAppState({ loading: true });
-    const apiUrl = `https://api.github.com/users/PetteriV99/repos`;
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then((repos) => {
-        setAppState({ loading: false, repos: repos });
-      });
+    const apiUrl = `http://127.0.0.1:5000/recipes`;
+    axios.get(apiUrl).then((repos) => {
+      const allRepos = repos.data.data;
+      setAppState({ loading: false, repos: allRepos });
+    });
   }, [setAppState]);
   return (
     <div className='App'>
       <div className='container'>
-        <h1>My Repositories</h1>
+        <h1>Movie Reviews</h1>
       </div>
       <div className='repo-container'>
         <ListLoading isLoading={appState.loading} repos={appState.repos} />
       </div>
       <footer>
         <div className='footer'>
-          Built{' '}
+          Made{' '}
           <span role='img' aria-label='love'>
             💚
           </span>{' '}
-          with by Shedrack Akintayo
+          for Application Programming Course
         </div>
       </footer>
     </div>
   );
 }
+
 export default App;
