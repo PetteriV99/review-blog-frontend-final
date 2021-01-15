@@ -9,25 +9,26 @@ function App() {
   const ListLoading = withListLoading(List);
   const [appState, setAppState] = useState({
     loading: false,
-    repos: null,
+    blogs: null,
+    comments: null,
   });
 
   useEffect(() => {
     setAppState({ loading: true });
     const apiUrl = `http://127.0.0.1:5000/reviews`;
-    axios.get(apiUrl).then((repos) => {
-      const allRepos = repos.data.data;
-      setAppState({ loading: false, repos: allRepos });
+    axios.get(apiUrl).then((blogs) => {
+      const allBlogs = blogs.data.data;
+      setAppState({ loading: false, blogs: allBlogs });
     });
   }, [setAppState]);
   
   return (
     <div className='App'>
       <div className='container'>
-        <h1>Review Blog</h1>
+        <h1>Reviews</h1>
       </div>
-      <div className='repo-container'>
-        <ListLoading isLoading={appState.loading} repos={appState.repos} />
+      <div className='blog-container'>
+        <ListLoading isLoading={appState.loading} blogs={appState.blogs} />
       </div>
       <div className='comment-container'>
       </div>

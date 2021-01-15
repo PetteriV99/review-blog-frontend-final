@@ -60,7 +60,7 @@
   text-align: center;
   color: var(--basic-color);
 }
-.repo-container {
+.blog-container {
   width: 50%;
   background-color: white;
   height: 700px;
@@ -77,19 +77,19 @@
   overflow: scroll;
 }
 @media screen and (max-width: 600px) {
-  .repo-container {
+  .blog-container {
     width: 100%;
     margin: 0;
     box-shadow: none;
   }
 }
-.repo-text {
+.blog-text {
   font-weight: 600;
 }
-.repo-rating {
+.blog-rating {
   font-weight: 600;
 }
-.repo-description {
+.blog-description {
   font-weight: 600;
   font-style: bold;
   color: var(--basic-color);
